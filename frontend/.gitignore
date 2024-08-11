@@ -1,0 +1,7 @@
+# Remove or comment out lines that are too broad
+#*
+#*.js
+
+# Be specific about what to ignore
+node_modules/
+dist/
