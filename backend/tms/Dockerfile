@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y maven
 WORKDIR /backend
 
 # Copy the pom.xml and src directory to the working directory
-COPY pom.xml .
+COPY pom.xml ./pom.xml
 COPY src ./src
 
 # Package the application
