@@ -1,5 +1,5 @@
 # Use an official Maven image to build the app
-FROM maven:3.8.7-openjdk-17 AS build
+FROM maven:3.8.7-openjdk-17-slim AS build
 WORKDIR /backend
 COPY . /backend
 RUN mvn clean package -DskipTests
