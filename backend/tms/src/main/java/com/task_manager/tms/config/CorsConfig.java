@@ -13,10 +13,13 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                System.out.println("CORS Configuration applied.");
                 registry.addMapping("/**")
-                        .allowedOrigins("https://fullstack-task-management-i3u4.onrender.com")
+                        .allowedOrigins("https://fullstack-task-management-i3u4.onrender.com/")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*");
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
+
             }
         };
     }
