@@ -1,26 +1,13 @@
-# Use an official Maven image to build the application
-FROM maven:3.8.6-openjdk-17 AS build
-
-# Set the working directory
+# Use an official Maven image to build the app
+FROM maven:3.8.7-openjdk-17 AS build
 WORKDIR /app
+COPY . /app
+RUN mvn clean package -DskipTests
 
-# Copy the Maven wrapper and project files
-COPY . .
-
-# Build the application
-RUN mvn clean package
-
-# Use an OpenJDK runtime image for the final stage
+# Use an official OpenJDK runtime as a parent image
 FROM openjdk:17-jdk-slim
-
-# Set the working directory
 WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 
-# Copy the built JAR file from the build stage
-COPY --from=build /app/target/tms-0.0.1-SNAPSHOT.jar
-
-# Expose port 8080
-EXPOSE 8080
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "your-app.jar"]
+# Command to run the application
+CMD ["java", "-jar", "app.jar"]
