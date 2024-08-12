@@ -3,7 +3,7 @@ import { RootState } from './interface';
 import { store } from '../redux/store';
 import { logout } from '../features/auth/authSlice';
 
-const BASE_URL = 'http://localhost:3000'; // Replace with your actual base URL
+const BASE_URL = process.env.REACT_APP_API_URL; // Replace with your actual base URL
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,
